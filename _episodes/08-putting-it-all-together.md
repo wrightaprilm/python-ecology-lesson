@@ -147,7 +147,7 @@ styles and the source codes that create them.
 
 Matplotlib integrates nicely with the numpy package and can use numpy arrays
 as input of the available plot functions. Consider the following example data,
-created with numpy:
+created with numpy by drawing samples from a normal distribution:
 
 ~~~
 import numpy
@@ -165,7 +165,7 @@ plt.hist(s)
 ~~~
 {: .language-python}
 
-![Line plot of y versus x](../fig/08_line_plot.png)
+![Line plot of y versus x](../fig/08-normal-distribution.png)
 
 > ## Tip: Cross-Platform Visualization of Figures
 > Jupyter Notebooks make many aspects of data analysis and visualization much simpler. This includes
@@ -183,8 +183,6 @@ fig, ax = plt.subplots()  # initiate an empty figure and axis matplotlib object
 ax.hist(s, 30)
 ~~~
 {: .language-python}
-
-![Simple line plot](../fig/08_line_plot.png)
 
 Although the latter approach requires a little bit more code to create the same plot,
 the advantage is that it gives us **full control** over the plot and we can add new items
@@ -210,7 +208,7 @@ ax2.hist(beta_draws)
 ~~~
 {: .language-python}
 
-![Plot with additional axes](../fig/dualdistribution.png)
+![Plot with additional axes](../fig/08-dualdistribution.png)
 
 > ## Challenge - Drawing from distributions
 > Have a look at the Numpy
@@ -283,12 +281,12 @@ plt.show() # not necessary in Jupyter Notebooks
 > > fig, ax = plt.subplots()
 > > flood = discharge[(discharge["datetime"] >= "2013-09-11") &
                         (discharge["datetime"] < "2013-09-15")]
-> > flood.plot(x ="datetime", y="flow_rate", ax=ax)
->
-> > ax2.legend().set_visible(False)
-> > ax2 = fig.add_axes([0.58, 0.575, 0.25, 0.3])
->
+>>
+> > ax2 = fig.add_axes([0.65, 0.575, 0.25, 0.3])
+>> flood.plot(x ="datetime", y="flow_rate", ax=ax)
 > > discharge.plot(x ="datetime", y="flow_rate", ax=ax2)
+> > ax2.legend().set_visible(False)
+
 > > ax.set_xlabel("") # no label
 > > ax.set_ylabel("Discharge, cubic feet per second")
 > > ax.legend().set_visible(False)
@@ -296,7 +294,7 @@ plt.show() # not necessary in Jupyter Notebooks
 > > ~~~
 > > {: .language-python}
 > >
-> > ![Flood event plot](../fig/floodevent.png)
+> > ![Flood event plot](../fig/08-floodevent.png)
 > {: .solution}
 {: .challenge}
 
