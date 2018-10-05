@@ -41,7 +41,10 @@ import plotnine as p9
 {: .language-python }
 
 From now on, the functions of `plotnine` are available using `p9.`. For the
-exercise, we will use the `surveys.csv` data set, with the `NA` values removed
+exercise, we will use the `surveys.csv` data set, with the `NA` values removed.
+Note that many of the plotting functions will still work with `NA` values present.
+Some of them have default behaviors to drop `NA` values. Plots covered under
+section `Faceting` will _not_ work without `NA` values removed.
 
 ~~~
 import pandas as pd
