@@ -197,7 +197,7 @@ ax1.hist(sample_data, 30)
 # Add a plot of a Beta distribution
 a = 5
 b = 10
-beta_draws = np.random.beta(a, b)
+beta_draws = numpy.random.beta(a, b)
 # adapt the labels
 ax1.set_ylabel('density')
 ax1.set_xlabel('value')
@@ -216,7 +216,6 @@ ax2.hist(beta_draws)
 > random documentation <https://docs.scipy.org/doc/numpy-1.14.0/reference/routines.random.html>.
 > Choose a distribution you have no familiarity with, and try to sample from and visualize it.
 {: .challenge}
-
 
 
 ### Link matplotlib, Pandas and plotnine
@@ -268,52 +267,22 @@ plt.show() # not necessary in Jupyter Notebooks
 > Load the streamgage data set with Pandas, subset the week of the 2013 Front Range flood
 > (September 11 through 15) and create a hydrograph (line plot) of the discharge data using
 > Pandas, linking it to an empty maptlotlib `ax` object. Create a second axis that displays the
-> whole dataset. Adapt the title and axes' labels using matplotlib.
+> whole dataset. Adapt the title and axes' labels using matplotlib. To each, add an annotation
+> that says 'Alert level' at a discharge rate of 4000 cubic feet.
 >
 > > ## Answers
 > >
 > > ~~~
-> > discharge = pd.read_csv("data/bouldercreek_09_2013.txt",
-> >                         skiprows=27, delimiter="\t",
-> >                         names=["agency", "site_id", "datetime",
-> >                                "timezone", "discharge", "discharge_cd"])
-> > discharge["datetime"] = pd.to_datetime(discharge["datetime"])
-> > front_range = discharge[(discharge["datetime"] >= "2013-09-09") &
-> >                         (discharge["datetime"] < "2013-09-15")]
-> >
-> > fig, ax = plt.subplots()
-> > front_range.plot(x ="datetime", y="discharge", ax=ax)
-> > ax.set_xlabel("") # no label
-> > ax.set_ylabel("Discharge, cubic feet per second")
-> > ax.set_title(" Front Range flood event 2013")
-> > discharge = pd.read_csv("../data/bouldercreek_09_2013.txt",
-> >                       skiprows=27, delimiter="\t",
-> >                       names=["agency", "site_id", "datetime",
-> >                              "timezone", "flow_rate", "height"])
 > > fig, ax = plt.subplots()
 > > flood = discharge[(discharge["datetime"] >= "2013-09-11") &
-                        (discharge["datetime"] < "2013-09-15")]
-> >
+> >                   (discharge["datetime"] < "2013-09-15")]
 > > ax2 = fig.add_axes([0.65, 0.575, 0.25, 0.3])
 > > flood.plot(x ="datetime", y="flow_rate", ax=ax)
 > > discharge.plot(x ="datetime", y="flow_rate", ax=ax2)
+> > ax.axhline(y=4000, xmin=0.0, xmax=1.0, color='r')
+> > ax.annotate('Alert level', xy = (0,0), xytext=(1, 4080),fontsize=16)
 > > ax2.legend().set_visible(False)
-> > ax.set_xlabel("") # no label
-> > ax.set_ylabel("Discharge, cubic feet per second")
-> > ax.legend().set_visible(False)
-> > ax.set_title(" Front Range flood event 2013")
-> > discharge = pd.read_csv("../data/bouldercreek_09_2013.txt",
-> >                       skiprows=27, delimiter="\t",
-> >                       names=["agency", "site_id", "datetime",
-> >                              "timezone", "flow_rate", "height"])
-> > fig, ax = plt.subplots()
-> > flood = discharge[(discharge["datetime"] >= "2013-09-11") &
-                        (discharge["datetime"] < "2013-09-15")]
->>
-> > ax2 = fig.add_axes([0.65, 0.575, 0.25, 0.3])
->> flood.plot(x ="datetime", y="flow_rate", ax=ax)
-> > discharge.plot(x ="datetime", y="flow_rate", ax=ax2)
-> > ax2.legend().set_visible(False)
+> > ax2.axhline(y=4000, xmin=0.0, xmax=1.0, color='r')
 
 > > ax.set_xlabel("") # no label
 > > ax.set_ylabel("Discharge, cubic feet per second")
@@ -321,7 +290,6 @@ plt.show() # not necessary in Jupyter Notebooks
 > > ax.set_title(" Front Range flood event 2013")
 > > ~~~
 > > {: .language-python}
-> >
 > > ![Flood event plot](../fig/08_flood_event.png)
 > {: .solution}
 {: .challenge}
